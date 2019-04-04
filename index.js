@@ -10,6 +10,10 @@ let chat_messages = [{
   author: 'AdminBot', text: 'Welcome to this chat.'
 }];
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 io.on('connection', function (socket) {
   socket.emit('loadMessages', { messages: chat_messages }); // When users connects for the first time it loads the old messages.
   socket.on('sendMessage', function (data) {
